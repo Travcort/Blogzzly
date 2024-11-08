@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Tarvone | My Blog</title>
+
+        {% load static %}
+
+        <!-- Main stylesheet -->
+        <link rel="stylesheet" href={% static "css/style.css" %}>
+
+    </head>
+    <body>
+
+        <!-- SideBar -->
+        {% include './Sidebar.html' %}
+
+        <section class="blog-posts">
+            <ul class="blog-posts-list">
+                {% for Post in Posts %}
+                    <li class="blog-post-item">
+                        <a id="card_anchor" href="{% url 'blog:post-view' Post.slug %}">
+                            <div class="card">
+                                {% comment %} 
+                                <div class="card__header">
+                                    <img src="" alt="card" class="card__image" width="600">
+                                </div> 
+                                {% endcomment %}
+                                <div class="card__body">
+                                    <span class="tag tag-blue">{{ Post.category }}</span>
+                                    <h4>{{ Post.title }}</h4>
+                                    <p>{{ Post.thumbnail_text|safe }}</p>
+                                </div>
+                                <div class="card__footer">
+                                    <div class="user">
+                                        <img src="https://i.pravatar.cc/40?img=1" alt="user" class="user__image">
+                                        <div class="user__info">
+                                            <h5>{{ Post.author }}</h5>
+                                            <small>2h ago</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+    </body>
+</html>
