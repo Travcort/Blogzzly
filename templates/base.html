@@ -7,9 +7,10 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- Scripts -->
         <script src="https://kit.fontawesome.com/9db003e82b.js" crossorigin="anonymous"></script>
-        <!-- Theme Toggling -->
-        <script defer src="{% static 'js/themeToggle.js' %}"></script>
+        <script defer src="{% static 'js/script.js' %}"></script>
+        
         <title>Bloggy</title>
 
         <!-- Favicon -->
@@ -29,7 +30,7 @@
                     {% include './Navbar.html' %}
                 </div>
 
-                <div class="mx-auto pt-10">
+                <div class="mx-auto pt-20">
                     {% block content %}
                     {% endblock content %}
                 </div>
