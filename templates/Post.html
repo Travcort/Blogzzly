@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <div class="w-full md:w-2/5 mx-auto pt-14">
+        <div class="mx-5 my-3 text-sm">
+            <a href="" class=" text-red-600 font-bold uppercase tracking-widest">{{post.category}}</a>
+        </div>
+        <div class="w-full text-4xl px-5 font-bold leading-none">
+            {{post.title}}
+        </div>
+        <div class="flex gap-4 w-full font-semibold font-mono px-5 pt-3">
+            <p>
+                <i class="fa-regular fa-user"></i> {{post.author}}
+            </p>
+            <p>
+                <i class="fa-regular fa-clock"></i> {{post.created_at|date:"F j Y H:i"}} UTC
+            </p>
+        </div>
+        <div class="px-5 w-full font-mono mx-auto">
+            <p>{{post.content}}
+        </div>
+    </div>
+ 
+{% endblock content %}

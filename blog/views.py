@@ -15,5 +15,5 @@ class BlogListView(generic.ListView):
 
 class BlogDetailedView(generic.DetailView):
     model = BlogPost
-    template_name = 'post.html'
+    template_name = 'Post.html'
     context_object_name = "post"
