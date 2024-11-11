@@ -4,9 +4,12 @@ from django.views import generic
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'index.html')
+
 class BlogListView(generic.ListView):
     model = BlogPost
-    template_name = "index.html"
+    template_name = "Blog.html"
     context_object_name = "Posts"
 
 
