@@ -17,7 +17,11 @@
                             <div class="absolute bg-gray-300 dark:bg-slate-800 top-0 left-0 w-24 h-1 z-30  transition-all duration-200 group-hover:bg-white dark:group-hover:bg-slate-900 group-hover:w-1/2"></div>
                         
                             <div class="py-2 px-9 relative group-hover:text-gray-200 dark:group-hover:text-gray-900">
-                                <h3 class="mt-8 text-lg font-bold">{{ post.title }}</h3>
+                                {% if post.thumbnail_image %}
+                                <img src="{{ post.thumbnail_image.url }}" alt="{{ post.thumbnail_text }}" class="rounded-lg max-w-sm max-h-sm object-cover" >
+                                {% endif %}
+                                <h4 class="font-semibold uppercase mt-4">{{ post.category }}</h4>
+                                <h3 class="mt-4 text-lg font-bold">{{ post.title }}</h3>
                                 <p class="mt-4 text-base font-medium">{{ post.thumbnail_text }}</p>    
                             </div>
                         </a>

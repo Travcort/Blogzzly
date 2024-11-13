@@ -1,11 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.text import slugify
+from cloudinary.models import CloudinaryField
 
 class BlogPost(models.Model):
     title = models.CharField(max_length=100, unique=True)
     category = models.CharField(max_length=20)
     thumbnail_text = models.CharField(max_length=50)
+    thumbnail_image = CloudinaryField('image', blank=True)
     slug = models.SlugField(max_length=150, unique=True)
     content = models.TextField()
     author = models.ForeignKey(User, on_delete=models.CASCADE)

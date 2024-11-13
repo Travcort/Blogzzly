@@ -17,6 +17,17 @@ from dotenv import load_dotenv
 # Load the variables
 load_dotenv()
 
+# Cloudinary Set-up
+import cloudinary
+# Configuration
+cloudinary.config(
+    secure=True
+)
+CLOUDINARY_URL = os.getenv("CLOUDINARY_URL")
+
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -44,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'tailwind',
     'theme',
+    'cloudinary_storage',
+    'cloudinary',
     'django_browser_reload',
     'blog'
 ]
@@ -145,6 +158,9 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+
+# Media Files
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
