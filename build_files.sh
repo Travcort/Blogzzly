@@ -12,7 +12,7 @@ else
 fi
 
 # Acivate the Virtual Environment based on the OS
-if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32"]]; then
+if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
     .\virtual\Scripts\activate
 else
     source virtual/bin/activate
