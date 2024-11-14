@@ -29,10 +29,10 @@ fi
 
 # Run the Migrations
 echo "Making the Migrations..."
-python3 -m manage.py migrate --noinput
+python3 manage.py migrate --noinput
 
 # Handling the static files
 echo "Collecting static files..."
-python3 -m manage.py collectstatic --noinput
+python3 manage.py collectstatic --noinput
 
 echo "Build completed successfully!"
