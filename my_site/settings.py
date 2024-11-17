@@ -17,6 +17,9 @@ from dotenv import load_dotenv
 # Load the variables
 load_dotenv()
 
+# Tiny MCE
+TINY_KEY = os.getenv('TINY')
+
 # Cloudinary Set-up
 import cloudinary
 # Configuration

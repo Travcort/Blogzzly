@@ -1,8 +1,19 @@
 from django.shortcuts import render
 from .models import BlogPost
 from django.views import generic
+from django.conf import settings
+from django.contrib.admin.views.decorators import staff_member_required
+from django.views.decorators.http import require_http_methods
+from django.http import JsonResponse
 
-# Create your views here.
+# Tiny
+@staff_member_required
+@require_http_methods(['GET'])
+def get_tiny(request):
+    key = getattr(settings, 'TINY_KEY', 'Key not Defined!')
+    if not key:
+        return JsonResponse({'Error': 'TinyMCE key is not configured. Please contact the SysAdmin.'})
+    return JsonResponse({'key': key})
 
 def home(request):
     return render(request, 'index.html')
