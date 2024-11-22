@@ -18,6 +18,12 @@ def get_tiny(request):
 def home(request):
     return render(request, 'index.html')
 
+def contact(request):
+    return render(request, 'Contact.html')
+
+def success(request):
+    return render(request, 'Success.html')
+
 class BlogListView(generic.ListView):
     model = BlogPost
     template_name = "Blog.html"
