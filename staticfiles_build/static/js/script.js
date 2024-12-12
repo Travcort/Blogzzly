@@ -1,10 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
 
-    // Theme
+    // Current Theme
+    const currentTheme = localStorage.getItem('theme');
+
+    // Apply the Default Browser theme
+    if (currentTheme) {
+        document.documentElement.classList.toggle('dark', currentTheme === 'dark');
+    }
+
+    // Theme Toggle
     const themeToggleButton = document.getElementById('theme-toggle');
 
     const toggleTheme = () => {
-        document.body.classList.toggle('dark');
+        const darkMode =  document.body.classList.toggle('dark');
+        localStorage.setItem('theme', darkMode ? 'dark' : 'light');
 
         if (document.body.classList.contains('dark')) {
             themeToggleButton.textContent = '🔆';
