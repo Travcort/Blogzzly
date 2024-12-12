@@ -30,6 +30,16 @@
         <!-- Tailwind -->
         {% tailwind_css %}
 
+        <!-- Theme Checking for Initial Load -->
+        <script>
+            (
+                function() {
+                    const defaultTheme = localStorage.getItem("theme") || "light";
+                    document.documentElement.classList.toggle("dark", defaultTheme === "dark");
+                }
+            )();
+        </script>
+
     </head>
 
     <body>

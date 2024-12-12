@@ -11,7 +11,7 @@
                     </div>
                     <p class="mt-4 text-base leading-relaxed">You better find a nice spot..</p>
                 </div>
-                <div class="grid grid-cols-1 gap-2 mt-12 sm:grid-cols-3 lg:mt-20   ">
+                <div class="grid grid-cols-1 gap-2 mt-12 sm:grid-cols-3 lg:mt-20">
                     {% for post in Posts %}
                         <a href="{% url 'blog:post-view' post.slug %}" class="rounded-lg transition-all duration-1000 bg-slate-800 dark:bg-slate-300 text-gray-300 dark:text-slate-900 hover:bg-slate-900 dark:hover:bg-slate-200  hover:shadow-xl m-2 p-4 relative z-40 group">
                             <div class="absolute bg-gray-300 dark:bg-slate-800 top-0 left-0 w-24 h-1 z-30  transition-all duration-200 group-hover:bg-white dark:group-hover:bg-slate-900 group-hover:w-1/2"></div>
