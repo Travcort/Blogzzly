@@ -1,5 +1,3 @@
-{% load static %}
-{% load tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,25 +8,25 @@
         <!-- Open Graph -->
         <meta property="og:title" content="Blogzzly" />
         <meta property="og:description" content="Dive into the world of Curiosity and New Ideas" />
-        <meta property="og:image" content="{% static 'images/preview.jpg' %}" />
+        <meta property="og:image" content="{{ url_for('static', filename='images/preview.jpg') }}" />
         <meta property="og:url" content="https://blogzzly.vercel.app" />
         <meta property="og:type" content="website" />
         <!-- Twitter Card -->
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Blogzzly" />
         <meta name="twitter:description" content="Dive into the world of Curiosity and New Ideas" />
-        <meta name="twitter:image" content="{% static 'images/preview.jpg' %}" />
+        <meta name="twitter:image" content="{{ url_for('static', filename='images/preview.jpg') }}" />
         <!-- Scripts -->
         <script src="https://kit.fontawesome.com/9db003e82b.js" crossorigin="anonymous"></script>
-        <script defer src="{% static 'js/script.js' %}"></script>
+        <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
         
         <title>Blogzzly</title>
 
         <!-- Favicon -->
-        <link rel='icon' type='image/x-icon' href="{% static '/images/favicon.png' %}" />
+        <link rel='icon' type='image/x-icon' href="{{ url_for('static', filename='images/favicon.png') }}" />
 
-        <!-- Tailwind -->
-        {% tailwind_css %}
+        <!-- CSS -->
+        <link rel='stylesheet' href="{{ url_for('static', filename='css/output.css') }}" />
 
         <!-- Theme Checking for Initial Load -->
         <script>
@@ -44,16 +42,19 @@
 
     <body>
         
-        <div class="min-h-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800 dark:text-gray-200">
+        <div class="flex flex-col min-h-screen overflow-hidden bg-slate-100 dark:bg-slate-900 text-gray-800 dark:text-gray-200">
             <div class="overflow-hidden">
                 <div class='relative'>
-                    <!-- NavBar -->
                     {% include './Navbar.html' %}
                 </div>
 
-                <div class="mx-auto pt-20">
+                <div class="grow mx-auto pt-20">
                     {% block content %}
                     {% endblock content %}
+                </div>
+
+                <div>
+                    {% include './Footer.html' %}
                 </div>
             </div> 
         </div>

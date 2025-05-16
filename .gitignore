@@ -13,10 +13,7 @@ venv/
 env/
 .env/
 
-# Django
-*.sqlite3
-
 # IDE
 .vscode/
 
-media
+node_modules

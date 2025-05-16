@@ -1,0 +1,16 @@
+{
+  "name": "blogzzly",
+  "version": "1.0.0",
+  "description": "```Curiosity ONLY allowed in here!!!```",
+  "main": "index.js",
+  "scripts": {
+    "build-css": "npx @tailwindcss/cli -i ./static/css/input.css -o ./static/css/output.css --watch",
+    "dev": "python index.py"
+  },
+  "author": "Tarv",
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.1.7",
+    "tailwindcss": "^4.1.7"
+  }
+}

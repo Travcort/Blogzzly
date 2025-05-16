@@ -3,8 +3,16 @@
 {% block content %}
 
     <div class="w-full md:w-2/5 mx-auto pt-14">
+        <div class="mt-4 flex flex-wrap gap-1">
+            {% for tag in post.tags %}
+            {% set color = tag.color or 'gray' %}
+                <span class="whitespace-nowrap rounded-full bg-{{ color }}-900 px-5 py-0.5 text-md text-purple-600">
+                    {{ tag.name }}
+                </span>
+            {% endfor %}
+        </div>
         <div class="mx-5 my-3 text-sm">
-            <a href="" class=" text-red-600 font-bold uppercase tracking-widest">{{post.category}}</a>
+            
         </div>
         <div class="w-full text-4xl px-5 font-bold leading-none">
             {{post.title}}
@@ -14,11 +22,11 @@
                 <i class="fa-regular fa-user"></i> {{post.author}}
             </p>
             <p>
-                <i class="fa-regular fa-clock"></i> {{post.created_at|date:"F j Y H:i"}} UTC
+                <i class="fa-regular fa-clock"></i> {{post.published}}
             </p>
         </div>
-        <div class="px-5 w-full font-mono mx-auto">
-            {{post.content|safe}}
+        <div class="px-5 prose dark:prose-invert">
+            {{ post.content | safe }}
         </div>
     </div>
  
