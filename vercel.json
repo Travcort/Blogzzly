@@ -3,7 +3,7 @@
     "buildCommand": "sh build_script.sh",
     "builds": [
       {
-        "src": "/api/index.py",
+        "src": "/index.py",
         "use": "@vercel/python",
         "config": { 
           "maxLambdaSize": "15mb", 
@@ -18,7 +18,7 @@
       },
       {
         "src": "/(.*)",
-        "dest": "/api/index.py"
+        "dest": "/index.py"
       }
     ]
 }
