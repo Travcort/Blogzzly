@@ -3,7 +3,7 @@
     "buildCommand": "sh build_script.sh",
     "builds": [
       {
-        "src": "./index.py",
+        "src": "/index.py",
         "use": "@vercel/python",
         "config": { 
           "maxLambdaSize": "15mb", 
@@ -11,10 +11,14 @@
         }
       }
     ],
-    "rewrites": [
-      { 
-        "source": "/(.*)", 
-        "destination": "./index.py" 
+    "routes": [
+      {
+        "src": "/static/(.*)",
+        "dest": "/static/$1"
+      },
+      {
+        "src": "/(.*)",
+        "dest": "/index.py"
       }
     ]
 }
