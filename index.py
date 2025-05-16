@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 load_dotenv()
 notionProxy = os.getenv("NOTION_PROXY_URL")
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", template_folder="templates")
 
 @app.context_processor
 def inject_year():
