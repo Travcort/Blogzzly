@@ -9,6 +9,10 @@
           "maxLambdaSize": "15mb", 
           "runtime": "python3.11" 
         }
+      },
+      {
+          "src": "static/**",
+          "use": "@vercel/static"
       }
     ],
     "routes": [
