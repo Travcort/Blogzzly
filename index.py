@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 from markupsafe import escape
-import requests, os
+import requests, os, html
 from datetime import datetime
 from dotenv import load_dotenv
 load_dotenv()
@@ -12,6 +12,20 @@ app = Flask(__name__, static_folder="static", template_folder="templates")
 def inject_year():
     return {'year': datetime.now().year}
 
+
+def clean_text(raw_text: str) -> str:
+    try:
+        # Step 2: Decode unicode escapes (\u003C -> <)
+        decoded = raw_text.encode('utf-8').decode('unicode_escape')
+    except UnicodeDecodeError:
+        # If fails, fall back to previous
+        decoded = raw_text
+
+    # Step 3: Unescape HTML entities (&quot; -> ")
+    clean = html.unescape(decoded)
+
+    return clean
+
 def get_posts():
     response = requests.get(f'{notionProxy}/blogs')
     response.raise_for_status()
@@ -20,7 +34,12 @@ def get_posts():
 def get_single_post(slug):
     response = requests.get(f'{notionProxy}/blogs/{slug}')
     response.raise_for_status()
-    return response.json()['data']
+
+    raw_data = response.json()['data']
+    escaped_html = raw_data['content']
+    decoded_html = clean_text(escaped_html)
+    raw_data['content'] = decoded_html
+    return raw_data
 
 @app.route('/')
 def home():
