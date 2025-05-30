@@ -7,12 +7,6 @@ from dotenv import load_dotenv
 load_dotenv()
 notionProxy = os.getenv("NOTION_PROXY_URL")
 
-logging.basicConfig(
-    filename='app.log',
-    level=logging.ERROR,
-    format='%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
-)
-
 app = Flask(__name__, static_folder="static", template_folder="templates")
 app.secret_key = os.getenv("SECRET_KEY")
 
