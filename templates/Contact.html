@@ -11,18 +11,18 @@
 		<img src="{{ url_for('static', filename='images/contact.png') }}" alt="" class="p-6 h-52 md:h-64">
 	</div>
 	<div class="mx-auto">
-        <form method="POST" action="/" class="space-y-6">
+        <form method="POST" class="space-y-6">
             <div>
                 <label for="name" class="font-semibold">Full name</label>
-                <input id="name" name="name" type="text" required placeholder="Later John" class="w-full text-slate-200 dark:text-slate-900 rounded">
+                <input id="name" name="name" type="text" required placeholder="Later John" class="w-full p-1 border-1 border-slate-900 dark:border-slate-100 rounded">
             </div>
             <div>
                 <label for="email" class="font-semibold">Email</label>
-                <input id="email" name="email" type="email" required placeholder="procrastinate@tommorrow.com" class="w-full text-slate-200 dark:text-slate-900 rounded">
+                <input id="email" name="email" type="email" required placeholder="procrastinate@tommorrow.com" class="w-full p-1 border-1 border-slate-900 dark:border-slate-100 rounded">
             </div>
             <div>
                 <label for="message" class="font-semibold">Message</label>
-                <textarea id="message" name="message" rows="3" required placeholder="I will do it tommorrow...." class="w-full text-slate-200 dark:text-slate-900 rounded"></textarea>
+                <textarea id="message" name="message" rows="3" required placeholder="I will do it tommorrow...." class="w-full p-1 border-1 border-slate-900 dark:border-slate-100 rounded"></textarea>
             </div>
             <button type="submit" class="w-full mb-4 bg-slate-800 hover:bg-slate-900 dark:bg-blue-600 hover:dark:bg-blue-900 text-gray-200 dark:text-slate-900 p-3 text-sm font-bold tracking-wide uppercase rounded ">Send Message</button>
         </form>

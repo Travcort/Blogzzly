@@ -1,12 +1,38 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, flash
 from markupsafe import escape
-import requests, os, html
+import requests, os, html, logging
 from datetime import datetime
+from flask_mail import Mail, Message
 from dotenv import load_dotenv
 load_dotenv()
 notionProxy = os.getenv("NOTION_PROXY_URL")
 
+logging.basicConfig(
+    filename='app.log',
+    level=logging.ERROR,
+    format='%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'
+)
+
 app = Flask(__name__, static_folder="static", template_folder="templates")
+app.secret_key = os.getenv("SECRET_KEY")
+
+# configuration of mail
+app.config['MAIL_SERVER'] = os.getenv('EMAIL_HOST')
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USERNAME'] = os.getenv('HOST_USER')
+app.config['MAIL_PASSWORD'] = os.getenv('HOST_PASSWORD')
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app)
+
+def send_mail(name, email, message):
+    msg = Message(
+        subject=f"Blogzzly contact form submission from {name} <{email}>",
+        sender=('Tarv from Tirva Softwares', os.getenv('HOST_USER')),
+        recipients=[os.getenv('RECEIVER_MAIL')],
+    )
+    msg.html = render_template("Email-Template.html", name=name, message=message)
+    mail.send(msg)
 
 @app.context_processor
 def inject_year():
@@ -41,9 +67,31 @@ def post(slug):
     article = get_single_post(escape(slug))
     return render_template('Post.html', post=article)
 
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 def contact():
+    if request.method == 'POST':
+        name = request.form.get('name')
+        email = request.form.get('email')
+        message = request.form.get('message')
+
+        if not name or not email or not message:
+            flash("All fields are required.", "warning")
+            return redirect('/contact')
+
+        try:
+            send_mail(name, email, message)
+            return redirect('/success')
+        except Exception:
+            logging.exception("Failed to send email")
+            flash("Failed to send message! Try again", "danger")
+            return render_template('Contact.html', name=name, email=email, message=message)
+
+
     return render_template('Contact.html')
+
+@app.route('/success')
+def success():
+    return render_template('Success.html')
 
 if __name__ == '__main__' and os.getenv("APP_ENV") == "Development":
     app.run(debug=True)
